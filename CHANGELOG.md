@@ -1,7 +1,46 @@
 # CHANGELOG
 
 
-## v0.0.0 (2026-09-05)
+## v0.1.1 (2026-09-05)
+
+### Bug Fixes
+
+- Detect Cloudflare block pages whose marker is past the first 4KB
+  ([#5](https://github.com/Hyperion-AI-Agency/hyperion-flaresolverr/pull/5),
+  [`6435973`](https://github.com/Hyperion-AI-Agency/hyperion-flaresolverr/commit/6435973c9c82e4060e2521a951c04f07734ca822))
+
+The 'Attention Required! | Cloudflare' 403 page carries its challenge-platform marker ~4.8KB in,
+  past the old 4000-char scan window, so it slipped through undetected and the 403 was returned
+  as-is. Widen the scan to 20000 chars and add the 'attention required' marker. Verified live
+  against oddschecker: challenge is now solved and the real page returned.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+Claude-Session: https://claude.ai/code/session_01PBsRau1b69sNDJwtaCSVrt
+
+### Chores
+
+- Restore version to 0.1.0 and set v0.1.0 as release baseline
+  ([#3](https://github.com/Hyperion-AI-Agency/hyperion-flaresolverr/pull/3),
+  [`83c3ea9`](https://github.com/Hyperion-AI-Agency/hyperion-flaresolverr/commit/83c3ea90162892b6942b044bbfee86cb4543a84e))
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+Claude-Session: https://claude.ai/code/session_01PBsRau1b69sNDJwtaCSVrt
+
+- Space out adapter and run tests in pre-commit
+  ([#4](https://github.com/Hyperion-AI-Agency/hyperion-flaresolverr/pull/4),
+  [`917267a`](https://github.com/Hyperion-AI-Agency/hyperion-flaresolverr/commit/917267a7837225d07fde813642716dce1af9d7dc))
+
+Add blank lines between logical blocks in adapter.py (magic trailing commas keep calls expanded
+  under ruff format). Add a pytest hook so pre-commit lints, formats, and tests.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+Claude-Session: https://claude.ai/code/session_01PBsRau1b69sNDJwtaCSVrt
+
+
+## v0.1.0 (2026-09-05)
 
 ### Chores
 
