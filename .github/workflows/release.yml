@@ -25,6 +25,10 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Build distributions
+        if: steps.release.outputs.released == 'true'
+        run: uv build
+
       - name: Publish to PyPI (trusted publishing, OIDC)
         if: steps.release.outputs.released == 'true'
         run: uv publish --trusted-publishing always
