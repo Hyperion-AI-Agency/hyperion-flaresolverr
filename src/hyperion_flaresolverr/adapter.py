@@ -93,9 +93,7 @@ class FlareSolverrAdapter(HTTPAdapter):
         return any(marker in body for marker in CHALLENGE_MARKERS)
 
     def _call(self, payload):
-        reply = self._rpc.post(
-            self.endpoint, json=payload, timeout=(self.max_timeout / 1000) + 15
-        )
+        reply = self._rpc.post(self.endpoint, json=payload, timeout=(self.max_timeout / 1000) + 15)
         reply.raise_for_status()
         data = reply.json()
         if data.get("status") != "ok":

@@ -21,6 +21,9 @@ dev = [
     "pytest>=8",
     "responses>=0.25",
     "ruff>=0.6",
+    "pre-commit>=4",
+    "commitizen>=4",
+    "python-semantic-release>=9",
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -35,3 +38,17 @@ select = ["E", "F"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "--import-mode=importlib"
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "v$version"
+version_provider = "pep621"
+
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
+tag_format = "v{version}"
+commit_message = "chore(release): v{version} [skip ci]"
+build_command = "uv build"
+
+[tool.semantic_release.branches.main]
+match = "main"

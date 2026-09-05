@@ -58,8 +58,11 @@ def test_unchallenged_request_never_calls_flaresolverr():
 def test_challenge_triggers_one_solve_and_one_retry():
     solve_calls = []
     responses.add(
-        responses.GET, TARGET + "/", status=503,
-        headers={"server": "cloudflare"}, body="Just a moment...",
+        responses.GET,
+        TARGET + "/",
+        status=503,
+        headers={"server": "cloudflare"},
+        body="Just a moment...",
     )
     responses.add(responses.GET, TARGET + "/", status=200, body="cleared page")
     responses.add_callback(responses.POST, ENDPOINT, callback=flaresolverr_rpc(solve_calls))
@@ -77,8 +80,11 @@ def test_challenge_triggers_one_solve_and_one_retry():
 def test_harvested_credentials_reused_without_second_solve():
     solve_calls = []
     responses.add(
-        responses.GET, TARGET + "/", status=503,
-        headers={"cf-mitigated": "challenge"}, body="",
+        responses.GET,
+        TARGET + "/",
+        status=503,
+        headers={"cf-mitigated": "challenge"},
+        body="",
     )
     responses.add(responses.GET, TARGET + "/", status=200, body="cleared")
     responses.add(responses.GET, TARGET + "/", status=200, body="second visit")
@@ -101,15 +107,22 @@ def test_harvested_credentials_reused_without_second_solve():
 def test_persistent_challenge_returns_browser_html():
     solve_calls = []
     responses.add(
-        responses.GET, TARGET + "/", status=503,
-        headers={"cf-mitigated": "challenge"}, body="Just a moment...",
+        responses.GET,
+        TARGET + "/",
+        status=503,
+        headers={"cf-mitigated": "challenge"},
+        body="Just a moment...",
     )
     responses.add(
-        responses.GET, TARGET + "/", status=503,
-        headers={"cf-mitigated": "challenge"}, body="Just a moment...",
+        responses.GET,
+        TARGET + "/",
+        status=503,
+        headers={"cf-mitigated": "challenge"},
+        body="Just a moment...",
     )
     responses.add_callback(
-        responses.POST, ENDPOINT,
+        responses.POST,
+        ENDPOINT,
         callback=flaresolverr_rpc(solve_calls, response_html="<html>rendered by browser</html>"),
     )
 
@@ -125,11 +138,15 @@ def test_persistent_challenge_returns_browser_html():
 @responses.activate
 def test_flaresolverr_error_status_raises():
     responses.add(
-        responses.GET, TARGET + "/", status=503,
-        headers={"cf-mitigated": "challenge"}, body="",
+        responses.GET,
+        TARGET + "/",
+        status=503,
+        headers={"cf-mitigated": "challenge"},
+        body="",
     )
     responses.add(
-        responses.POST, ENDPOINT,
+        responses.POST,
+        ENDPOINT,
         json={"status": "error", "message": "no browser available"},
     )
 

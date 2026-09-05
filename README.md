@@ -44,10 +44,33 @@ docker run -d --name flaresolverr -p 8191:8191 \
 pip install hyperion-flaresolverr
 ```
 
+## Development
+
+```
+uv sync
+uv run pre-commit install --hook-type pre-commit --hook-type commit-msg
+```
+
+Ruff lints and formats; pre-commit runs it on every commit. Commit messages must
+follow [Conventional Commits](https://www.conventionalcommits.org/) and are
+checked by commitizen on the `commit-msg` hook.
+
+```
+uv run ruff check .
+uv run ruff format .
+uv run pytest -q
+```
+
 ## Releasing
 
-Publishing uses PyPI [trusted publishing](https://docs.pypi.org/trusted-publishers/)
+Releases are driven by [python-semantic-release](https://python-semantic-release.readthedocs.io/).
+On every push to `main`, commit messages since the last release decide the next
+version: `fix:` bumps patch, `feat:` bumps minor, a `!` or `BREAKING CHANGE:`
+bumps major. It updates the version and `CHANGELOG.md`, tags `vX.Y.Z`, and cuts a
+GitHub release. Commits with no releasable type publish nothing.
+
+Publishing to PyPI uses [trusted publishing](https://docs.pypi.org/trusted-publishers/)
 over OIDC, so no API token is stored in the repo. The trusted publisher must be
 configured on PyPI (GitHub owner `hyperion-ai-agency`, repository
-`hyperion-flaresolverr`, workflow `release.yml`) before the first tagged release
-will succeed. Then push a tag matching `v*` to build and publish.
+`hyperion-flaresolverr`, workflow `release.yml`) before the first release will
+succeed.
