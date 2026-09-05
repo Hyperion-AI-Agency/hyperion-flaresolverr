@@ -51,9 +51,9 @@ uv sync
 uv run pre-commit install --hook-type pre-commit --hook-type commit-msg
 ```
 
-Ruff lints and formats; pre-commit runs it on every commit. Commit messages must
-follow [Conventional Commits](https://www.conventionalcommits.org/) and are
-checked by commitizen on the `commit-msg` hook.
+On every commit, pre-commit runs Ruff (lint and format) and the test suite.
+Commit messages must follow [Conventional Commits](https://www.conventionalcommits.org/)
+and are checked by commitizen on the `commit-msg` hook.
 
 ```
 uv run ruff check .
