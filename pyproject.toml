@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "hyperion-flaresolverr"
-version = "0.0.0"
+version = "0.1.0"
 description = "A requests transport adapter that falls back to FlareSolverr on a Cloudflare challenge."
 readme = "README.md"
 requires-python = ">=3.10"
