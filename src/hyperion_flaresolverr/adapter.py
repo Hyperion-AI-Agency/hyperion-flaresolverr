@@ -7,6 +7,8 @@ from requests.adapters import HTTPAdapter
 from requests.models import Response
 from requests.structures import CaseInsensitiveDict
 
+from hyperion_flaresolverr.exceptions import FlareSolverrError
+
 log = logging.getLogger(__name__)
 
 CHALLENGE_STATUSES = {403, 429, 503}
@@ -19,10 +21,6 @@ CHALLENGE_MARKERS = (
     "_cf_chl_opt",
     "enable javascript and cookies to continue",
 )
-
-
-class FlareSolverrError(RuntimeError):
-    pass
 
 
 class FlareSolverrAdapter(HTTPAdapter):
