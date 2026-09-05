@@ -1,0 +1,2 @@
+class FlareSolverrError(RuntimeError):
+    pass
