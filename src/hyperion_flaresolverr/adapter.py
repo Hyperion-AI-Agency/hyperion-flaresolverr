@@ -13,6 +13,7 @@ CHALLENGE_STATUSES = {403, 429, 503}
 
 CHALLENGE_MARKERS = (
     "just a moment",
+    "attention required",
     "cf-browser-verification",
     "challenge-platform",
     "_cf_chl_opt",
@@ -101,7 +102,9 @@ class FlareSolverrAdapter(HTTPAdapter):
             return False
 
         try:
-            body = response.text[:4000].lower()
+            # Cloudflare interstitials are small, but the marker script can sit
+            # well past the first few KB, so scan a generous window.
+            body = response.text[:20000].lower()
         except Exception:
             return False
 

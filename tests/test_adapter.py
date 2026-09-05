@@ -104,6 +104,32 @@ def test_harvested_credentials_reused_without_second_solve():
 
 
 @responses.activate
+def test_cloudflare_block_page_with_late_marker_is_detected():
+    solve_calls = []
+
+    # Mimic a Cloudflare "Attention Required!" 403 whose only challenge marker
+    # sits well past the first few KB of the body.
+    block_body = ("x" * 6000) + "challenge-platform"
+    responses.add(
+        responses.GET,
+        TARGET + "/",
+        status=403,
+        headers={"server": "cloudflare"},
+        body=block_body,
+    )
+    responses.add(responses.GET, TARGET + "/", status=200, body="cleared page")
+    responses.add_callback(responses.POST, ENDPOINT, callback=flaresolverr_rpc(solve_calls))
+
+    session, adapter = make_session()
+    resp = session.get(TARGET + "/")
+
+    assert resp.status_code == 200
+    assert resp.text == "cleared page"
+    assert len(solve_calls) == 1
+    adapter.close()
+
+
+@responses.activate
 def test_persistent_challenge_returns_browser_html():
     solve_calls = []
     responses.add(
