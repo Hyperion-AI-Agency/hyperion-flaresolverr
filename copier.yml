@@ -7,6 +7,8 @@
 #
 #   copier update
 
+_answers_file: .copier-answers.yml
+
 _exclude:
   - "copier.yml"
   - "pyproject.toml"

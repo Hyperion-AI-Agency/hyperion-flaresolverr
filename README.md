@@ -62,6 +62,12 @@ root:
 copier update
 ```
 
+Copier defaults to the latest release tag. To vendor a specific version, pin it:
+
+```
+copier copy --vcs-ref v0.2.0 gh:hyperion-ai-agency/hyperion-flaresolverr path/to/project
+```
+
 ## Development
 
 ```
