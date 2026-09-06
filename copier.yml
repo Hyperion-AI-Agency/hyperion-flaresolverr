@@ -1,0 +1,33 @@
+# Vendor this library into a project instead of installing it from PyPI:
+#
+#   copier copy gh:hyperion-ai-agency/hyperion-flaresolverr path/to/project
+#
+# It drops src/hyperion_flaresolverr/ and tests/ into the target and records a
+# .copier-answers.yml. Pull upstream fixes later from inside the project:
+#
+#   copier update
+
+_exclude:
+  - "copier.yml"
+  - "pyproject.toml"
+  - "README.md"
+  - "LICENSE"
+  - "CHANGELOG.md"
+  - "uv.lock"
+  - ".gitignore"
+  - ".pre-commit-config.yaml"
+  - ".github"
+  - ".github/**"
+  - ".venv"
+  - "dist"
+  - ".pytest_cache"
+  - ".pytest_cache/**"
+  - ".ruff_cache"
+  - ".ruff_cache/**"
+  - "**/__pycache__"
+  - "**/*.pyc"
+
+_message_after_copy: |
+  Vendored hyperion_flaresolverr (src/hyperion_flaresolverr) and its tests.
+  It requires `requests` in the target project; the tests also need `responses`.
+  Pull upstream fixes later with: copier update
