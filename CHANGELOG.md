@@ -1,6 +1,50 @@
 # CHANGELOG
 
 
+## v0.2.0 (2026-09-06)
+
+### Chores
+
+- Add Copier setup to vendor the module + tests into projects
+  ([#8](https://github.com/Hyperion-AI-Agency/hyperion-flaresolverr/pull/8),
+  [`945af35`](https://github.com/Hyperion-AI-Agency/hyperion-flaresolverr/commit/945af354fefca5ef4f9de121de5d21eceb367a64))
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+Claude-Session: https://claude.ai/code/session_01PBsRau1b69sNDJwtaCSVrt
+
+### Features
+
+- Vendor the library into projects via Copier
+  ([#9](https://github.com/Hyperion-AI-Agency/hyperion-flaresolverr/pull/9),
+  [`722de77`](https://github.com/Hyperion-AI-Agency/hyperion-flaresolverr/commit/722de771f6f31961980bcb24603dfdea50dd791f))
+
+Explicit answers file + version-pin docs, and ship copier.yml in a release tag so 'copier copy
+  gh:...' resolves the vendor config by default.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+Claude-Session: https://claude.ai/code/session_01PBsRau1b69sNDJwtaCSVrt
+
+### Refactoring
+
+- Move FlareSolverrError into an exceptions subpackage
+  ([#6](https://github.com/Hyperion-AI-Agency/hyperion-flaresolverr/pull/6),
+  [`81ecc37`](https://github.com/Hyperion-AI-Agency/hyperion-flaresolverr/commit/81ecc3719e1ee60f1058654eb68e225429e78643))
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+Claude-Session: https://claude.ai/code/session_01PBsRau1b69sNDJwtaCSVrt
+
+- Put FlareSolverrError in exceptions/errors.py, not the package init
+  ([#7](https://github.com/Hyperion-AI-Agency/hyperion-flaresolverr/pull/7),
+  [`6bfbfba`](https://github.com/Hyperion-AI-Agency/hyperion-flaresolverr/commit/6bfbfba1ec3368f56bce1880a3f46019346f30cb))
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+Claude-Session: https://claude.ai/code/session_01PBsRau1b69sNDJwtaCSVrt
+
+
 ## v0.1.1 (2026-09-05)
 
 ### Bug Fixes
