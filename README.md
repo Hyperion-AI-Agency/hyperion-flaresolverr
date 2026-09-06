@@ -44,6 +44,24 @@ docker run -d --name flaresolverr -p 8191:8191 \
 pip install hyperion-flaresolverr
 ```
 
+## Or vendor it with Copier
+
+To copy the code straight into a project instead of depending on the published
+package, use [Copier](https://copier.readthedocs.io/):
+
+```
+copier copy gh:hyperion-ai-agency/hyperion-flaresolverr path/to/project
+```
+
+That drops `src/hyperion_flaresolverr/` and `tests/` into the project and records
+a `.copier-answers.yml`. The vendored code needs `requests` (and `responses` to
+run the tests). Pull later upstream fixes into the vendored copy from the project
+root:
+
+```
+copier update
+```
+
 ## Development
 
 ```
